@@ -138,6 +138,23 @@
       font-weight: 800; font-size: 17px; color: var(--text);
     }
     .logo svg { display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+    }
 
     /* =========================================
        HERO
@@ -1060,7 +1077,14 @@
       </svg>
       VakmanFlow
     </a>
-    <a href="#contact" class="btn btn-primary">Gratis demo aanvragen</a>
+    <nav class="nav-links">
+      <a href="#systeem">Hoe het werkt</a>
+      <a href="#prijzen">Prijzen</a>
+      <a href="#over">Over</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-cta">Gratis demo aanvragen</a>
   </div>
 </nav>
 
@@ -1276,7 +1300,7 @@
   <div class="stap-blok">
     <div class="stap-tekst reveal">
       <p class="stap-label">Stap 03 — Beschikbaarheidsmail</p>
-      <h2>Wanneer kun jij langs? Het systeem schrijft de mail.</h2>
+      <h2>Wanneer kun je langskomen? Het systeem schrijft de mail.</h2>
       <p>Vul je beschikbare datums in. Eén druk op de knop en het systeem genereert een professionele reactie — klaar om te versturen via WhatsApp of e-mail.</p>
       <p>Informeel of formeel, jij kiest.</p>
     </div>
