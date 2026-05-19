@@ -45,25 +45,6 @@
     img{max-width:100%;display:block}
     button{font-family:inherit;cursor:pointer}
 
-    /* ─── CURSOR ─── */
-    #cur,#cur-f{
-      position:fixed;top:0;left:0;
-      border-radius:50%;pointer-events:none;
-      z-index:9999;transform:translate(-50%,-50%);
-      mix-blend-mode:difference;
-    }
-    #cur{
-      width:10px;height:10px;
-      background:var(--acc);
-      transition:width .15s,height .15s,background .2s;
-    }
-    #cur-f{
-      width:36px;height:36px;
-      border:1.5px solid rgba(42,157,156,.5);
-      transition:width .25s,height .25s,left .08s,top .08s;
-    }
-    body.link-hover #cur{width:20px;height:20px}
-    body.link-hover #cur-f{width:56px;height:56px;border-color:var(--acc)}
 
     /* ─── CANVAS BG ─── */
     #particles-canvas{
@@ -166,8 +147,9 @@
     .hero::before{
       content:'';
       position:absolute;inset:0;
-      background:linear-gradient(to right,rgba(0,0,0,.72) 0%,rgba(0,0,0,.72) 45%,rgba(0,0,0,.25) 100%);
-      z-index:0;pointer-events:none;
+      background:linear-gradient(to bottom,rgba(0,0,0,.52) 0%,rgba(0,0,0,.38) 100%);
+      pointer-events:none;
+      z-index:0;
     }
     @media(max-width:768px){.hero{padding:100px 20px 60px}}
     .hero-inner{
@@ -182,11 +164,11 @@
     .hero-badge{
       display:inline-flex;align-items:center;gap:8px;
       font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-      color:var(--acc);
-      border:1px solid rgba(42,157,156,.3);
+      color:#ffffff;
+      border:1px solid rgba(255,255,255,.25);
       padding:7px 14px;border-radius:var(--pill);
       margin-bottom:28px;
-      background:rgba(42,157,156,.06);
+      background:rgba(255,255,255,.12);
     }
     .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -196,7 +178,7 @@
       font-size:clamp(3rem,6.5vw,5.8rem);
       font-weight:800;line-height:1.03;
       letter-spacing:-.035em;
-      color:var(--text);
+      color:#ffffff;
       margin-bottom:28px;
     }
     .hero-h1 .line-1{display:block;color:var(--acc)}
@@ -210,7 +192,7 @@
     }
 
     .hero-sub{
-      font-size:1.05rem;color:var(--muted);
+      font-size:1.05rem;color:rgba(255,255,255,.80);
       line-height:1.8;max-width:480px;
       margin-bottom:44px;
     }
@@ -224,7 +206,16 @@
     }
     .hero-trust-item{
       display:flex;align-items:center;gap:7px;
-      font-size:13px;color:#fff;font-weight:500;
+      font-size:13px;color:rgba(255,255,255,.75);font-weight:500;
+    }
+    .hero .btn-outline{
+      color:#ffffff;
+      border-color:rgba(255,255,255,.35);
+    }
+    .hero .btn-outline:hover{
+      border-color:#ffffff;
+      color:#ffffff;
+      background:rgba(255,255,255,.08);
     }
     .hero-trust-item svg{color:var(--acc2);flex-shrink:0}
 
@@ -1152,13 +1143,66 @@
 
     /* ─── SELECTION ─── */
     ::selection{background:rgba(42,157,156,.3);color:var(--text)}
+
+    /* ─── SCROLL SNAP STAPPEN ─── */
+    .systeem-scroll{
+      scroll-snap-type:y mandatory;
+      overflow-y:scroll;
+      height:100vh;
+    }
+    .systeem-scroll .stap{
+      scroll-snap-align:start;
+      min-height:100vh;
+      border-top:1px solid var(--border);
+    }
+    .systeem-scroll .stap:first-child{border-top:none}
+
+    /* ─── CONTACT NIEUW ─── */
+    .contact-columns{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:56px;
+      align-items:start;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    @media(max-width:900px){
+      .contact-columns{grid-template-columns:1fr;gap:40px}
+    }
+    .contact-info{
+      background:var(--bg3);
+      border:1px solid var(--border2);
+      border-radius:var(--r2);
+      padding:40px 36px;
+    }
+    .contact-info h3{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:1.4rem;font-weight:800;
+      color:var(--text);
+      margin-bottom:10px;
+      letter-spacing:-.02em;
+    }
+    .contact-info>p{
+      font-size:.95rem;color:var(--muted);
+      line-height:1.7;margin-bottom:32px;
+    }
+    .contact-details{
+      list-style:none;
+      display:flex;flex-direction:column;gap:18px;
+    }
+    .contact-details li{
+      display:flex;align-items:center;gap:14px;
+      font-size:.95rem;color:var(--muted);
+    }
+    .contact-icon{font-size:18px;flex-shrink:0}
+    .contact-details a{
+      color:var(--acc);
+      transition:color .2s;
+    }
+    .contact-details a:hover{color:#1a7a79}
   </style>
 </head>
 <body>
-
-<!-- Custom cursor -->
-<div id="cur"></div>
-<div id="cur-f"></div>
 
 <!-- Particle canvas -->
 <canvas id="particles-canvas"></canvas>
@@ -1302,10 +1346,11 @@
   <div class="wrap">
     <div class="systeem-header reveal">
       <span class="sec-label">Hoe het werkt</span>
-      <h2 class="sec-h2">Vijf stappen. Één systeem.</h2>
-      <p class="sec-sub center">Zo pakt VakmanFlow de rompslomp van je over.</p>
+      <h2 class="sec-h2">Vijf stappen. Eén systeem.</h2>
+      <p class="sec-sub center">Dit is hoe VakmanFlow jou meer tijd geeft voor het echte werk.</p>
     </div>
 
+    <div class="systeem-scroll">
     <!-- STAP 1 -->
     <div class="stap reveal">
       <div class="stap-tekst">
@@ -1552,6 +1597,7 @@
       </div>
     </div>
 
+    </div><!-- /systeem-scroll -->
   </div>
 </section>
 
@@ -1656,7 +1702,7 @@
         <p>VakmanFlow is mijn antwoord daarop. Een systeem dat al het "kantoorwerk" overneemt, zodat jij je kunt focussen op waartoe je echt bent opgeleid: het werk met je handen.</p>
         <p>Ik werk alleen met schilders in de regio Apeldoorn, zodat ik iedereen persoonlijk kan helpen. Geen callcenter, geen grote corporate. Gewoon ik, jij, en een systeem dat werkt.</p>
         <a href="#contact" class="btn btn-outline">
-          Leer me kennen
+          Leer mij kennen
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -1812,39 +1858,42 @@
 ══════════════════════════════════ -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="contact-inner">
-      <div class="contact-header reveal">
-        <span class="sec-label">Contact</span>
-        <h2 class="sec-h2">Laten we kennismaken</h2>
-        <p class="sec-sub center">Vul het formulier in en ik neem binnen 24 uur contact met je op.</p>
+    <div class="contact-header reveal" style="text-align:center;margin-bottom:52px">
+      <span class="sec-label">Contact</span>
+      <h2 class="sec-h2">Plan een gratis kennismakingsgesprek</h2>
+      <p class="sec-sub center">Ik bel jou op. Geen verplichtingen, geen verkooppraatje.</p>
+    </div>
+    <div class="contact-columns reveal">
+      <!-- Calendly inline widget -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/jisse-vakmanflow/30min?hide_gdpr_banner=1&primary_color=2a9d9c"
+           style="min-width:320px;height:700px;">
       </div>
-      <form class="form-grid reveal" id="contactForm" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="field">
-            <label for="naam">Naam *</label>
-            <input type="text" id="naam" name="naam" placeholder="Jan Pietersen" required>
-          </div>
-          <div class="field">
-            <label for="tel">Telefoon *</label>
-            <input type="tel" id="tel" name="tel" placeholder="06 12345678" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="email">E-mailadres *</label>
-          <input type="email" id="email" name="email" placeholder="jan@jouwbedrijf.nl" required>
-        </div>
-        <div class="field">
-          <label for="bericht">Jouw situatie</label>
-          <textarea id="bericht" name="bericht" placeholder="Vertel kort over jouw bedrijf en wat je wil bereiken..."></textarea>
-        </div>
-        <div class="form-submit">
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;max-width:360px" id="submitBtn">
-            Verstuur bericht
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-          <p class="form-fine">Ik reageer binnen 24 uur · Geen verplichtingen</p>
-        </div>
-      </form>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <!-- Contactgegevens -->
+      <div class="contact-info">
+        <h3>Liever direct contact?</h3>
+        <p>Geen probleem. Stuur een mail of bel me op.</p>
+        <ul class="contact-details">
+          <li>
+            <span class="contact-icon">✉</span>
+            <a href="mailto:jisse@vakmanflow.com">jisse@vakmanflow.com</a>
+          </li>
+          <li>
+            <span class="contact-icon">📞</span>
+            <a href="tel:+31615686880">+31 6 15 68 68 80</a>
+          </li>
+          <li>
+            <span class="contact-icon">📍</span>
+            <span>Apeldoorn</span>
+          </li>
+          <li>
+            <span class="contact-icon">🏢</span>
+            <span>KVK 42057202</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -1867,7 +1916,7 @@
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
-  <p class="footer-copy">© 2025 VakmanFlow · Apeldoorn</p>
+  <p class="footer-copy">© 2026 VakmanFlow · Apeldoorn</p>
 </footer>
 
 <!-- ══════════════════════════════════
@@ -1922,30 +1971,6 @@
   draw();
 })();
 
-/* ─── CUSTOM CURSOR ─── */
-(function(){
-  const cur = document.getElementById('cur');
-  const curF = document.getElementById('cur-f');
-  if(window.matchMedia('(pointer:coarse)').matches) return;
-
-  let mx=0,my=0,fx=0,fy=0;
-  document.addEventListener('mousemove', e=>{
-    mx=e.clientX; my=e.clientY;
-    cur.style.left=mx+'px'; cur.style.top=my+'px';
-  });
-
-  function followCursor(){
-    fx+=(mx-fx)*.12; fy+=(my-fy)*.12;
-    curF.style.left=fx+'px'; curF.style.top=fy+'px';
-    requestAnimationFrame(followCursor);
-  }
-  followCursor();
-
-  document.querySelectorAll('a,button,.faq-q,.prob-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>document.body.classList.add('link-hover'));
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('link-hover'));
-  });
-})();
 
 /* ─── GSAP ANIMATIONS ─── */
 gsap.registerPlugin(ScrollTrigger);
@@ -2077,19 +2102,6 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 
-/* ─── FORM SUBMIT ─── */
-function handleSubmit(e){
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.innerHTML = `
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-    Bericht ontvangen!
-  `;
-  btn.style.background = '#16a34a';
-  btn.disabled = true;
-}
 
 /* ─── MAGNETIC BUTTONS ─── */
 (function(){
