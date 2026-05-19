@@ -1168,8 +1168,59 @@
       align-items:center;
     }
     @media(max-width:800px){
+      .system-scroll-zone{display:none}
       .sticky-inner{grid-template-columns:1fr;gap:32px}
       .sticky-phones-col{display:none}
+    }
+
+    /* ─── MOBIELE STAPPEN ─── */
+    .mobile-steps{
+      display:none;
+      flex-direction:column;
+      gap:80px;
+      padding:40px 24px 80px;
+    }
+    @media(max-width:800px){
+      .mobile-steps{display:flex}
+    }
+    .mob-step{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:32px;
+      text-align:center;
+    }
+    .mob-step-text{width:100%;max-width:360px}
+    .mob-step-text h2{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-size:clamp(1.5rem,5vw,2rem);
+      font-weight:800;line-height:1.15;
+      letter-spacing:-.025em;
+      color:var(--text);margin-bottom:14px;
+    }
+    .mob-step-text p{font-size:.92rem;color:var(--muted);line-height:1.8}
+    .mob-phone{
+      display:flex;
+      justify-content:center;
+    }
+    .mob-phone .phone{
+      width:240px;height:480px;
+    }
+    .mob-dots-nav{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      padding:8px 0 0;
+    }
+    .mob-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--subtle);
+      transition:background .35s cubic-bezier(0.23,1,0.32,1),
+                 transform .35s cubic-bezier(0.23,1,0.32,1);
+    }
+    .mob-dot.active{
+      background:var(--acc);
+      transform:scale(1.5);
     }
     /* stap tekst — CSS grid stack zodat alle items overlappen */
     .sticky-steps-col{display:grid}
@@ -1732,6 +1783,262 @@
         </div>
       </div><!-- /system-sticky -->
     </div><!-- /system-scroll-zone -->
+
+    <!-- MOBIELE STAPPEN (alleen zichtbaar op ≤800px) -->
+    <div class="mobile-steps">
+
+      <div class="mob-step" data-mob-step="0">
+        <div class="mob-step-text">
+          <div class="stap-label"><div class="stap-num">1</div> Offerte-intake</div>
+          <h2>Klanten vragen een offerte aan via jouw website</h2>
+          <p>Op jouw website staat een professioneel intakeformulier. Klanten vullen naam, adres, type werk en foto's in — op elk moment van de dag. Zodra iemand het formulier verstuurt, krijg jij direct een e-mailmelding.</p>
+        </div>
+        <div class="mob-phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="m-base m1">
+                <div class="m1-logo">
+                  <div class="m1-circle">G</div>
+                  <div>
+                    <div class="m1-name">De Groot Schilderwerken</div>
+                    <div class="m1-sub">Vraag vrijblijvend een offerte aan</div>
+                  </div>
+                </div>
+                <div class="m1-steps">
+                  <div class="m1-dot done">✓</div>
+                  <div class="m1-line"></div>
+                  <div class="m1-dot active">2</div>
+                  <div class="m1-line"></div>
+                  <div class="m1-dot todo">3</div>
+                </div>
+                <div class="m1-fields">
+                  <div>
+                    <div class="m1-label">Type werk *</div>
+                    <div class="m1-field active">Buitenschilderwerk</div>
+                  </div>
+                  <div>
+                    <div class="m1-label">Omschrijving</div>
+                    <div class="m1-field" style="height:32px;font-size:8px;color:#bbb">Voorgevel + kozijnen...</div>
+                  </div>
+                  <div>
+                    <div class="m1-label">Foto's uploaden</div>
+                    <div class="m1-field dashed">+ Afbeeldingen toevoegen</div>
+                  </div>
+                  <div class="m1-btn">Verstuur aanvraag →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mob-step" data-mob-step="1">
+        <div class="mob-step-text">
+          <div class="stap-label"><div class="stap-num">2</div> Dashboard &amp; bevestiging</div>
+          <h2>Alles staat direct klaar — voor jou én de klant</h2>
+          <p>De aanvraag verschijnt meteen in jouw dashboard. Tegelijkertijd krijgt de klant automatisch een bevestigingsmail namens jou — met jouw naam en bedrijfsnaam.</p>
+        </div>
+        <div class="mob-phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="m-base m2">
+                <div class="m2-header">
+                  <div>
+                    <div class="m2-hname">Dashboard</div>
+                    <div class="m2-hsub">3 aanvragen vandaag</div>
+                  </div>
+                  <div class="m2-new">+ Nieuw</div>
+                </div>
+                <div class="m2-tabs">
+                  <div class="m2-tab active">Alle <span class="m2-tbadge mg">3</span></div>
+                  <div class="m2-tab">Nieuw <span class="m2-tbadge">1</span></div>
+                  <div class="m2-tab">Opvolging</div>
+                  <div class="m2-tab">Klaar</div>
+                </div>
+                <div class="m2-cards">
+                  <div class="m2-card new-c">
+                    <div class="m2-card-top">
+                      <div class="m2-cname">Jan Pietersen</div>
+                      <div class="m2-badge new-b">Nieuw</div>
+                    </div>
+                    <div style="font-size:7.5px;color:#888;margin-bottom:5px">Buitenschilderwerk · zojuist</div>
+                    <span class="m2-action">Stuur offerte →</span>
+                  </div>
+                  <div class="m2-card fol-c">
+                    <div class="m2-card-top">
+                      <div class="m2-cname">M. Verstegen</div>
+                      <div class="m2-badge fol-b">Opvolging</div>
+                    </div>
+                    <div style="font-size:7.5px;color:#888;margin-bottom:5px">Binnenschilderwerk · dag 3</div>
+                    <span class="m2-action gray">Bekijk bericht</span>
+                  </div>
+                  <div class="m2-card done-c">
+                    <div class="m2-card-top">
+                      <div class="m2-cname">Fam. Kuipers</div>
+                      <div class="m2-badge don-b">Klaar</div>
+                    </div>
+                    <div style="font-size:7.5px;color:#888">Dakkapel + garage · 2d</div>
+                  </div>
+                </div>
+                <div class="scr-auto-mail" style="margin-top:auto">
+                  <div class="scr-auto-mail-icon">✉</div>
+                  <div class="scr-auto-mail-body">
+                    <div class="scr-auto-mail-title">Bevestigingsmail verstuurd</div>
+                    <div class="scr-auto-mail-to">Aan: jan.pietersen@gmail.com</div>
+                  </div>
+                  <div class="scr-auto-mail-badge">✓ Auto</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mob-step" data-mob-step="2">
+        <div class="mob-step-text">
+          <div class="stap-label"><div class="stap-num">3</div> Offerte versturen</div>
+          <h2>Professionele offerte in jouw huisstijl, in één klik klaar</h2>
+          <p>Vul de gegevens in en het systeem genereert een nette PDF met jouw naam, logo en BTW-nummer. Verstuur hem direct via WhatsApp of e-mail.</p>
+        </div>
+        <div class="mob-phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="m-base m3">
+                <div class="m3-header">
+                  <div class="m3-hlogo">G</div>
+                  <div class="m3-hname">De Groot Schilderwerken<br><span style="font-size:7px;font-weight:400;opacity:.7">KvK 12345678</span></div>
+                </div>
+                <div class="m3-body">
+                  <div class="m3-meta">
+                    <div>
+                      <h4>Klant</h4>
+                      <div class="m3-mr">Fam. Janssen</div>
+                      <div class="m3-ml">Molenweg 12, Apeldoorn</div>
+                    </div>
+                    <div>
+                      <h4>Offerte</h4>
+                      <div class="m3-mr">#2024-018</div>
+                      <div class="m3-ml">Geldig t/m 15 jun</div>
+                    </div>
+                  </div>
+                  <div class="m3-table">
+                    <div class="m3-thead"><span>Omschrijving</span><span>Bedrag</span></div>
+                    <div class="m3-trow"><span>Buitenschilderwerk</span><span>€ 1.200</span></div>
+                    <div class="m3-trow"><span>Houtrot herstel</span><span>€ 350</span></div>
+                    <div class="m3-trow"><span>Materiaal</span><span>€ 180</span></div>
+                  </div>
+                  <div class="m3-totals">
+                    <div class="m3-tr"><span>Subtotaal</span><span>€ 1.730</span></div>
+                    <div class="m3-tr"><span>BTW 21%</span><span>€ 363</span></div>
+                    <div class="m3-tr main"><span>Totaal incl. BTW</span><span>€ 2.093</span></div>
+                  </div>
+                  <div class="m3-foot">📱 WhatsApp &nbsp;·&nbsp; ✉ E-mail</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mob-step" data-mob-step="3">
+        <div class="mob-step-text">
+          <div class="stap-label"><div class="stap-num">4</div> Follow-up</div>
+          <h2>Nooit meer een offerte die je vergeet op te volgen</h2>
+          <p>Op dag 3, 7 en 18 staat er automatisch een follow-upbericht klaar. Jij krijgt een melding, controleert het bericht en drukt op verzenden.</p>
+        </div>
+        <div class="mob-phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="m-base m4">
+                <div class="m4-title">Follow-up: Jan Pietersen</div>
+                <div class="m4-bar"><div class="m4-fill"></div></div>
+                <div class="m4-sec">Opvolgberichten</div>
+                <div class="m4-cards">
+                  <div class="m4-card">
+                    <div>
+                      <div class="m4-cday">Dag 3 — Eerste opvolging</div>
+                      <div class="m4-cdate">ma 3 jun · Verstuurd ✓</div>
+                    </div>
+                    <div class="m4-send gray">Klaar</div>
+                  </div>
+                  <div class="m4-card act">
+                    <div>
+                      <div class="m4-cday">Dag 7 — Tweede opvolging</div>
+                      <div class="m4-cdate">vr 7 jun · Vandaag</div>
+                    </div>
+                    <div class="m4-send">Verstuur</div>
+                  </div>
+                  <div class="m4-card">
+                    <div>
+                      <div class="m4-cday">Dag 18 — Laatste herinnering</div>
+                      <div class="m4-cdate">di 18 jun · Gepland</div>
+                    </div>
+                    <div class="m4-send gray">Wacht</div>
+                  </div>
+                </div>
+                <div class="m4-dots">
+                  <div class="m4-di">WhatsApp</div>
+                  <div class="m4-di">E-mail</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mob-step" data-mob-step="4">
+        <div class="mob-step-text">
+          <div class="stap-label"><div class="stap-num">5</div> Review-aanvraag</div>
+          <h2>Meer reviews zonder er iets voor te doen</h2>
+          <p>Na elke afgeronde klus staat er een persoonlijk reviewverzoek klaar om te versturen. Jij drukt op de knop — de klant krijgt een bericht in jouw naam.</p>
+        </div>
+        <div class="mob-phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="m-base m5">
+                <div class="m5-title">Review aanvragen</div>
+                <div class="m5-steps">
+                  <div class="m5-step">
+                    <div class="m5-si"><div class="m5-sl">Fam. Janssen</div>Buitenschilderwerk · Klaar</div>
+                    <div class="m5-send">Stuur verzoek</div>
+                  </div>
+                  <div class="m5-step">
+                    <div class="m5-si"><div class="m5-sl">M. Verstegen</div>Binnenschilderwerk · Klaar</div>
+                    <div class="m5-done">✓ Verstuurd</div>
+                  </div>
+                </div>
+                <div class="m5-sec">Bericht (WhatsApp of e-mail)</div>
+                <div class="m5-toggle">
+                  <div class="m5-tb on">WhatsApp</div>
+                  <div class="m5-tb off">E-mail</div>
+                </div>
+                <div class="m5-msg">"Hoi Fam. Janssen, bedankt voor het vertrouwen! Zou je een Google-review willen schrijven? Dat helpt ons enorm 🙏"</div>
+                <div class="m5-btns">
+                  <div class="m5-wa">📱 Verstuur</div>
+                  <div class="m5-cp">Kopieer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dot nav voor mobiel -->
+      <div class="mob-dots-nav">
+        <span class="mob-dot active"></span>
+        <span class="mob-dot"></span>
+        <span class="mob-dot"></span>
+        <span class="mob-dot"></span>
+        <span class="mob-dot"></span>
+      </div>
+
+    </div><!-- /mobile-steps -->
+
   </div>
 </section>
 
@@ -2373,6 +2680,31 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       const frac = total > 1 ? idx / (total - 1) : 0;
       const targetScroll = scrollZone.offsetTop + maxScroll * frac;
       window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    });
+  });
+})();
+
+/* ─── MOBIELE STAPPEN DOTS ─── */
+(function(){
+  const mobSteps = document.querySelectorAll('.mob-step');
+  const mobDots  = document.querySelectorAll('.mob-dot');
+  if(!mobSteps.length || !mobDots.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const idx = parseInt(entry.target.dataset.mobStep, 10);
+        mobDots.forEach((d,i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+
+  mobSteps.forEach(step => obs.observe(step));
+
+  /* dot klikken scrollt naar bijbehorende stap */
+  mobDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      mobSteps[idx]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 })();
