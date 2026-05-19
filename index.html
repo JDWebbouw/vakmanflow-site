@@ -1169,8 +1169,15 @@
       .sticky-inner{grid-template-columns:1fr;gap:32px}
       .sticky-phones-col{display:none}
     }
-    .step-item{display:none}
-    .step-item.active{display:block}
+    /* stap tekst — CSS grid stack zodat alle items overlappen */
+    .sticky-steps-col{display:grid}
+    .step-item{
+      grid-area:1/1;
+      opacity:0;
+      pointer-events:none;
+      will-change:opacity,transform;
+    }
+    .step-item.active{pointer-events:auto}
     .step-item h2{
       font-family:'Plus Jakarta Sans',sans-serif;
       font-size:clamp(1.8rem,3vw,2.5rem);
@@ -1179,8 +1186,18 @@
       color:var(--text);margin-bottom:18px;
     }
     .step-item p{font-size:.95rem;color:var(--muted);line-height:1.82}
-    .phone-slide{display:none;justify-content:center}
-    .phone-slide.active{display:flex}
+
+    /* telefoon slides — CSS grid stack */
+    .sticky-phones-col{display:grid;place-items:center}
+    .phone-slide{
+      grid-area:1/1;
+      opacity:0;
+      pointer-events:none;
+      will-change:opacity,transform;
+    }
+    .phone-slide.active{pointer-events:auto}
+
+    /* voortgangspunten */
     .sticky-dots{
       position:absolute;
       bottom:28px;
@@ -1192,12 +1209,13 @@
     .step-dot{
       width:8px;height:8px;border-radius:50%;
       background:var(--subtle);
-      transition:background .3s,transform .3s;
+      transition:background .35s cubic-bezier(0.23,1,0.32,1),
+                 transform .35s cubic-bezier(0.23,1,0.32,1);
       cursor:pointer;
     }
     .step-dot.active{
       background:var(--acc);
-      transform:scale(1.4);
+      transform:scale(1.5);
     }
 
     /* ─── CONTACT NIEUW ─── */
@@ -2199,27 +2217,68 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 /* ─── STICKY SCROLL STAPPEN ─── */
 (function(){
   const scrollZone = document.getElementById('system-scroll-zone');
-  const stepItems = document.querySelectorAll('.step-item');
-  const phoneSlides = document.querySelectorAll('#system-scroll-zone .phone-slide');
-  const stepDots = document.querySelectorAll('.step-dot');
+  const stepItems  = document.querySelectorAll('.step-item');
+  const phoneSlides= document.querySelectorAll('#system-scroll-zone .phone-slide');
+  const stepDots   = document.querySelectorAll('.step-dot');
   const total = stepItems.length || 1;
+  let currentStep = 0;
 
-  function setActiveStep(idx){
-    stepItems.forEach((el,i)=>el.classList.toggle('active',i===idx));
-    phoneSlides.forEach((el,i)=>el.classList.toggle('active',i===idx));
-    stepDots.forEach((el,i)=>el.classList.toggle('active',i===idx));
+  const EASE_OUT  = 'cubic-bezier(0.23,1,0.32,1)';
+  const EASE_IN   = 'power2.in';
+
+  /* zet eerste stap direct zichtbaar */
+  gsap.set(stepItems[0],  { opacity:1, y:0 });
+  gsap.set(phoneSlides[0],{ opacity:1, scale:1 });
+  stepDots[0]?.classList.add('active');
+
+  function transition(toIdx){
+    if(toIdx === currentStep) return;
+    const dir = toIdx > currentStep ? 1 : -1;
+    const from = currentStep;
+    currentStep = toIdx;
+
+    /* ── tekst uitzwaaien ── */
+    gsap.to(stepItems[from], {
+      opacity:0, y: -22 * dir,
+      duration:0.22, ease:EASE_IN, overwrite:true
+    });
+    stepItems[from].classList.remove('active');
+
+    /* ── tekst inzwaaien ── */
+    stepItems[toIdx].classList.add('active');
+    gsap.fromTo(stepItems[toIdx],
+      { opacity:0, y: 22 * dir },
+      { opacity:1, y:0, duration:0.48, ease:EASE_OUT, overwrite:true }
+    );
+
+    /* ── telefoon uitfaden ── */
+    gsap.to(phoneSlides[from], {
+      opacity:0, scale:0.93,
+      duration:0.22, ease:EASE_IN, overwrite:true,
+      onComplete(){ phoneSlides[from].classList.remove('active') }
+    });
+
+    /* ── telefoon infaden ── */
+    phoneSlides[toIdx].classList.add('active');
+    gsap.fromTo(phoneSlides[toIdx],
+      { opacity:0, scale:0.94 },
+      { opacity:1, scale:1, duration:0.48, ease:EASE_OUT, overwrite:true }
+    );
+
+    /* ── punten bijwerken ── */
+    stepDots.forEach((d,i)=>d.classList.toggle('active', i===toIdx));
   }
 
   function onScroll(){
     if(!scrollZone) return;
-    const rect = scrollZone.getBoundingClientRect();
-    const zoneH = scrollZone.offsetHeight;
-    const viewH = window.innerHeight;
-    const scrolled = Math.max(0, -rect.top);
+    const rect    = scrollZone.getBoundingClientRect();
+    const zoneH   = scrollZone.offsetHeight;
+    const viewH   = window.innerHeight;
+    const scrolled= Math.max(0, -rect.top);
     const maxScroll = Math.max(1, zoneH - viewH);
-    const progress = Math.min(1, scrolled / maxScroll);
+    const progress  = Math.min(1, scrolled / maxScroll);
     const step = Math.min(total - 1, Math.floor(progress * total));
-    setActiveStep(step);
+    transition(step);
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
