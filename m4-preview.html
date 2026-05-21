@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4 Preview — Follow-up mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 40px 20px;
+  }
+
+  /* ── Phone shell — screen goes full-bleed, notch overlaid ── */
+  .phone {
+    width: 300px;
+    background: #111;
+    border-radius: 44px;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,.6),
+                inset 0 0 0 1px rgba(255,255,255,.08),
+                inset 0 0 0 8px #1a1a1a;
+    overflow: hidden; /* screen clips to phone border-radius */
+  }
+
+  /* Dynamic Island */
+  .dynamic-island {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 88px; height: 26px;
+    background: #111;
+    border-radius: 20px;
+    z-index: 20;
+  }
+
+  /* Screen = full width, clips into phone corners */
+  .phone-screen {
+    width: 100%;
+    background: #f2f2f7;
+    border-radius: 36px;
+    overflow: hidden;
+  }
+
+  /* ── App content ── */
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 610px;
+  }
+
+  /* Status bar (iOS style) */
+  .status-bar {
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 24px 8px;
+    background: #fff;
+  }
+  .sb-time {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1c1c1e;
+    letter-spacing: -.3px;
+  }
+  .sb-icons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #1c1c1e;
+  }
+  .sb-icons svg { display: block; }
+  .sb-battery {
+    font-size: 10px;
+    font-weight: 600;
+    color: #1c1c1e;
+  }
+
+  /* Modal header */
+  .modal-bar {
+    background: #fff;
+    padding: 10px 18px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5ea;
+  }
+  .modal-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1c1c1e;
+  }
+  .modal-close {
+    font-size: 16px;
+    color: #8e8e93;
+    line-height: 1;
+  }
+
+  /* White card with purple left border */
+  .followup-card {
+    background: #fff;
+    border-left: 4px solid #c026d3;
+    border-radius: 12px;
+    margin: 10px 10px 8px;
+    padding: 12px 13px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+
+  /* Card header row */
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .back-link {
+    font-size: 11px;
+    color: #8e8e93;
+  }
+  .card-day {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1c1c1e;
+  }
+
+  /* Toggle */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toggle-label {
+    font-size: 11px;
+    color: #8e8e93;
+    font-weight: 500;
+  }
+  .toggle-label.active {
+    color: #1c1c1e;
+    font-weight: 600;
+  }
+  .toggle-track {
+    width: 40px; height: 23px;
+    background: #c026d3;
+    border-radius: 12px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .toggle-thumb {
+    width: 19px; height: 19px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; right: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  }
+
+  /* Message box */
+  .msg-box {
+    background: #f2f2f7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 10.5px;
+    color: #1c1c1e;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .msg-box p { margin-bottom: 5px; }
+  .msg-box p:last-child { margin-bottom: 0; }
+
+  /* Regenerate row */
+  .regen-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .regen-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    color: #3c3c43;
+    background: #f2f2f7;
+    border: 1px solid #d1d1d6;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: 500;
+  }
+  .variant-label {
+    font-size: 10.5px;
+    color: #8e8e93;
+  }
+
+  /* Action buttons */
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-radius: 11px;
+    padding: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .btn-wa   { background: #25d366; }
+  .btn-mail { background: #2563eb; }
+  .btn-copy { background: #4b5563; }
+
+  /* Progress dots */
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 4px;
+  }
+  .prog-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .prog-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid #c026d3;
+    background: transparent;
+  }
+  .prog-dot.filled { background: #c026d3; }
+  .prog-label {
+    font-size: 9px;
+    color: #c026d3;
+    font-weight: 600;
+  }
+  .prog-sent {
+    margin-left: auto;
+    font-size: 10px;
+    color: #8e8e93;
+  }
+
+  /* Bottom card — more breathing room */
+  .bottom-bar {
+    background: #fff;
+    border-top: 1px solid #e5e5ea;
+    padding: 14px 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .bottom-question {
+    font-size: 11px;
+    color: #3c3c43;
+    font-weight: 500;
+    flex: 1;
+    line-height: 1.4;
+  }
+  .confirm-btn {
+    background: #c026d3;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 22px;
+    padding: 10px 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .caption {
+    margin-top: 24px;
+    text-align: center;
+    color: rgba(255,255,255,.4);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div>
+  <div class="phone">
+    <div class="dynamic-island"></div>
+    <div class="phone-screen">
+      <div class="app">
+
+        <!-- iOS Status bar -->
+        <div class="status-bar">
+          <span class="sb-time">11:14</span>
+          <div class="sb-icons">
+            <!-- Signal bars -->
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="#1c1c1e">
+              <rect x="0" y="7" width="3" height="5" rx="1"/>
+              <rect x="4.5" y="5" width="3" height="7" rx="1"/>
+              <rect x="9" y="2.5" width="3" height="9.5" rx="1"/>
+              <rect x="13.5" y="0" width="3" height="12" rx="1" opacity=".3"/>
+            </svg>
+            <!-- WiFi -->
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#1c1c1e" stroke-width="1.8" stroke-linecap="round">
+              <path d="M1 4.5C3.8 1.7 7 .5 8 .5s4.2 1.2 7 4" opacity=".3"/>
+              <path d="M3 7C4.9 5 6.5 4 8 4s3.1 1 5 3"/>
+              <path d="M5.5 9.5C6.5 8.3 7.2 8 8 8s1.5.3 2.5 1.5"/>
+              <circle cx="8" cy="11.5" r="1" fill="#1c1c1e" stroke="none"/>
+            </svg>
+            <!-- Battery -->
+            <span class="sb-battery">65%</span>
+          </div>
+        </div>
+
+        <!-- Modal header -->
+        <div class="modal-bar">
+          <span class="modal-title">#2026-017: Jan Pietersen</span>
+          <span class="modal-close">✕</span>
+        </div>
+
+        <!-- Main card -->
+        <div class="followup-card">
+
+          <div class="card-top">
+            <span class="back-link">← Terug</span>
+            <span class="card-day">Dag 7</span>
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Informeel</span>
+            <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            <span class="toggle-label active">Formeel</span>
+          </div>
+
+          <div class="msg-box">
+            <p>Geachte heer Pietersen,</p>
+            <p>Ik wilde even checken of u de offerte goed ontvangen had. Zijn er nog vragen?</p>
+            <p>Met vriendelijke groet, G. de Groot | 0612345678</p>
+          </div>
+
+          <div class="regen-row">
+            <span class="regen-btn">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Genereer opnieuw
+            </span>
+            <span class="variant-label">Variant 1/5</span>
+          </div>
+
+          <div class="action-btn btn-wa">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2.003a9.997 9.997 0 0 0-8.637 14.992L2 22l5.138-1.335A9.997 9.997 0 1 0 11.999 2.003z"/></svg>
+            WhatsApp
+          </div>
+          <div class="action-btn btn-mail">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            E-mail
+          </div>
+          <div class="action-btn btn-copy">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Kopieer
+          </div>
+
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-row">
+          <div class="prog-item">
+            <div class="prog-dot filled"></div>
+            <span class="prog-label">Dag 3</span>
+          </div>
+          <div class="prog-item">
+            <div class="prog-dot"></div>
+            <span class="prog-label">Dag 7</span>
+          </div>
+          <div class="prog-item">
+            <div class="prog-dot"></div>
+            <span class="prog-label">Dag 18</span>
+          </div>
+          <span class="prog-sent">1/3 verstuurd</span>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="bottom-bar">
+          <span class="bottom-question">Heeft de klant<br>de offerte<br>geaccepteerd?</span>
+          <span class="confirm-btn">Bevestig opdracht</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <p class="caption">Preview — open in browser om te controleren</p>
+</div>
+
+</body>
+</html>

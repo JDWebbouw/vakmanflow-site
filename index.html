@@ -1092,24 +1092,42 @@
     .m3-tr{display:flex;justify-content:space-between;font-size:8px;color:#555;padding:2px 0}
     .m3-tr.main{background:#ac0a7a;color:#fff;border-radius:6px;padding:5px 8px;font-size:9px;font-weight:700;margin-top:2px}
     .m3-foot{font-size:7px;color:#999;border-top:1px solid #f0f0f0;padding-top:5px;text-align:center}
-    /* Stap 4 */
-    .m4{background:#fff;padding:36px 12px 10px}
-    .m4-title{font-size:9.5px;font-weight:800;color:#1a1a1a}
-    .m4-bar{height:3px;background:#f0eeec;border-radius:2px;margin:5px 0 10px;overflow:hidden}
-    .m4-fill{height:100%;width:33%;background:#ac0a7a;border-radius:2px}
-    .m4-sec{font-size:9px;font-weight:700;color:#333;margin-bottom:7px}
-    .m4-cards{display:flex;flex-direction:column;gap:5px;margin-bottom:9px}
-    .m4-card{border-radius:8px;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid #e8e6e4}
-    .m4-card.act{background:#fdf2f8;border-color:#f5c0e3}
-    .m4-cday{font-size:9px;font-weight:700;color:#1a1a1a}
-    .m4-cdate{font-size:7.5px;color:#888}
-    .m4-send{font-size:7.5px;font-weight:700;background:#ac0a7a;color:#fff;border-radius:10px;padding:3px 9px;white-space:nowrap}
-    .m4-send.gray{background:#e0deda;color:#999}
-    .m4-dots{display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:4px}
-    .m4-di{font-size:7px;color:#888}
-    .m4-di::before{content:'●';color:#ac0a7a;font-size:6px;margin-right:2px}
-    .m4-count{text-align:center;font-size:7.5px;color:#999;margin-bottom:7px}
-    .m4-confirm{background:#ac0a7a;color:#fff;border-radius:20px;text-align:center;padding:8px;font-size:9.5px;font-weight:700}
+    /* Stap 4 — Follow-up berichtscherm */
+    .m4{background:#f2f2f7;padding:0}
+    .m4-status{height:34px;background:#fff;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px;flex-shrink:0}
+    .m4-sb-time{font-size:10px;font-weight:700;color:#1c1c1e;letter-spacing:-.2px}
+    .m4-sb-icons{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:600;color:#1c1c1e}
+    .m4-modal-bar{background:#fff;padding:7px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e5ea;flex-shrink:0}
+    .m4-modal-title{font-size:10px;font-weight:700;color:#1c1c1e}
+    .m4-modal-close{font-size:13px;color:#8e8e93;line-height:1}
+    .m4-body{background:#fff;border-left:3px solid #c026d3;border-radius:10px;margin:7px 7px 5px;padding:10px 10px 8px;flex:1;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+    .m4-back-row{display:flex;align-items:center;gap:8px}
+    .m4-back{font-size:9px;color:#8e8e93}
+    .m4-day{font-size:13px;font-weight:700;color:#1c1c1e}
+    .m4-toggle-row{display:flex;align-items:center;gap:6px}
+    .m4-tlabel{font-size:9px;color:#8e8e93;font-weight:500}
+    .m4-tlabel.on{color:#1c1c1e;font-weight:600}
+    .m4-track{width:34px;height:19px;background:#c026d3;border-radius:10px;position:relative;flex-shrink:0}
+    .m4-thumb{width:15px;height:15px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+    .m4-msg{background:#f2f2f7;border-radius:8px;padding:8px 9px;font-size:8.5px;color:#1c1c1e;line-height:1.55;flex:1}
+    .m4-msg p{margin-bottom:4px}
+    .m4-msg p:last-child{margin-bottom:0}
+    .m4-regen{display:flex;align-items:center;gap:6px;flex-shrink:0}
+    .m4-regen-btn{display:flex;align-items:center;gap:4px;font-size:9px;color:#3c3c43;background:#f2f2f7;border:1px solid #d1d1d6;border-radius:16px;padding:4px 8px;font-weight:500}
+    .m4-variant{font-size:9px;color:#8e8e93}
+    .m4-abtn{display:flex;align-items:center;justify-content:center;gap:5px;border-radius:9px;padding:7px 8px;font-size:10.5px;font-weight:600;color:#fff;flex-shrink:0}
+    .m4-wa{background:#25d366}
+    .m4-email{background:#2563eb}
+    .m4-copy{background:#4b5563}
+    .m4-progress{display:flex;align-items:center;gap:8px;padding:6px 12px 3px;flex-shrink:0}
+    .m4-prog-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+    .m4-prog-dot{width:11px;height:11px;border-radius:50%;border:2px solid #c026d3;background:transparent}
+    .m4-prog-dot.on{background:#c026d3}
+    .m4-prog-lbl{font-size:7.5px;color:#c026d3;font-weight:600}
+    .m4-prog-sent{margin-left:auto;font-size:8px;color:#8e8e93}
+    .m4-bottom{background:#fff;border-top:1px solid #e5e5ea;padding:10px 12px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0}
+    .m4-question{font-size:9px;color:#3c3c43;font-weight:500;flex:1;line-height:1.4}
+    .m4-confirm-btn{background:#c026d3;color:#fff;font-size:9px;font-weight:700;border-radius:18px;padding:8px 11px;white-space:nowrap;flex-shrink:0}
     /* Stap 5 */
     .m5{background:#fff;padding:36px 12px 10px}
     .m5-title{font-size:9.5px;font-weight:800;color:#1a1a1a;margin-bottom:8px}
@@ -1746,35 +1764,61 @@
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
                   <div class="m-base m4">
-                    <div class="m4-title">Follow-up: Jan Pietersen</div>
-                    <div class="m4-bar"><div class="m4-fill"></div></div>
-                    <div class="m4-sec">Opvolgberichten</div>
-                    <div class="m4-cards">
-                      <div class="m4-card">
-                        <div>
-                          <div class="m4-cday">Dag 3 — Eerste opvolging</div>
-                          <div class="m4-cdate">ma 3 jun · Verstuurd ✓</div>
-                        </div>
-                        <div class="m4-send gray">Klaar</div>
-                      </div>
-                      <div class="m4-card act">
-                        <div>
-                          <div class="m4-cday">Dag 7 — Tweede opvolging</div>
-                          <div class="m4-cdate">vr 7 jun · Vandaag</div>
-                        </div>
-                        <div class="m4-send">Verstuur</div>
-                      </div>
-                      <div class="m4-card">
-                        <div>
-                          <div class="m4-cday">Dag 18 — Laatste herinnering</div>
-                          <div class="m4-cdate">di 18 jun · Gepland</div>
-                        </div>
-                        <div class="m4-send gray">Wacht</div>
+                    <div class="m4-status">
+                      <span class="m4-sb-time">11:14</span>
+                      <div class="m4-sb-icons">
+                        <svg width="13" height="9" viewBox="0 0 13 9" fill="#1c1c1e"><rect x="0" y="5" width="2.5" height="4" rx=".5"/><rect x="3.5" y="3.5" width="2.5" height="5.5" rx=".5"/><rect x="7" y="1.5" width="2.5" height="7.5" rx=".5"/><rect x="10.5" y="0" width="2.5" height="9" rx=".5" opacity=".3"/></svg>
+                        <span>65%</span>
                       </div>
                     </div>
-                    <div class="m4-dots">
-                      <div class="m4-di">WhatsApp</div>
-                      <div class="m4-di">E-mail</div>
+                    <div class="m4-modal-bar">
+                      <span class="m4-modal-title">#2026-017: Jan Pietersen</span>
+                      <span class="m4-modal-close">✕</span>
+                    </div>
+                    <div class="m4-body">
+                      <div class="m4-back-row">
+                        <span class="m4-back">← Terug</span>
+                        <span class="m4-day">Dag 7</span>
+                      </div>
+                      <div class="m4-toggle-row">
+                        <span class="m4-tlabel">Informeel</span>
+                        <div class="m4-track"><div class="m4-thumb"></div></div>
+                        <span class="m4-tlabel on">Formeel</span>
+                      </div>
+                      <div class="m4-msg">
+                        <p>Geachte heer Pietersen,</p>
+                        <p>Ik wilde even checken of u de offerte goed ontvangen had. Zijn er nog vragen?</p>
+                        <p>Met vriendelijke groet, G. de Groot | 0612345678</p>
+                      </div>
+                      <div class="m4-regen">
+                        <span class="m4-regen-btn">
+                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                          Genereer opnieuw
+                        </span>
+                        <span class="m4-variant">Variant 1/5</span>
+                      </div>
+                      <div class="m4-abtn m4-wa">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2.003a9.997 9.997 0 0 0-8.637 14.992L2 22l5.138-1.335A9.997 9.997 0 1 0 11.999 2.003z"/></svg>
+                        WhatsApp
+                      </div>
+                      <div class="m4-abtn m4-email">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        E-mail
+                      </div>
+                      <div class="m4-abtn m4-copy">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        Kopieer
+                      </div>
+                    </div>
+                    <div class="m4-progress">
+                      <div class="m4-prog-item"><div class="m4-prog-dot on"></div><span class="m4-prog-lbl">Dag 3</span></div>
+                      <div class="m4-prog-item"><div class="m4-prog-dot"></div><span class="m4-prog-lbl">Dag 7</span></div>
+                      <div class="m4-prog-item"><div class="m4-prog-dot"></div><span class="m4-prog-lbl">Dag 18</span></div>
+                      <span class="m4-prog-sent">1/3 verstuurd</span>
+                    </div>
+                    <div class="m4-bottom">
+                      <span class="m4-question">Heeft de klant<br>de offerte<br>geaccepteerd?</span>
+                      <span class="m4-confirm-btn">Bevestig opdracht</span>
                     </div>
                   </div>
                 </div>
@@ -1998,35 +2042,61 @@
             <div class="phone-notch"></div>
             <div class="phone-screen">
               <div class="m-base m4">
-                <div class="m4-title">Follow-up: Jan Pietersen</div>
-                <div class="m4-bar"><div class="m4-fill"></div></div>
-                <div class="m4-sec">Opvolgberichten</div>
-                <div class="m4-cards">
-                  <div class="m4-card">
-                    <div>
-                      <div class="m4-cday">Dag 3 — Eerste opvolging</div>
-                      <div class="m4-cdate">ma 3 jun · Verstuurd ✓</div>
-                    </div>
-                    <div class="m4-send gray">Klaar</div>
-                  </div>
-                  <div class="m4-card act">
-                    <div>
-                      <div class="m4-cday">Dag 7 — Tweede opvolging</div>
-                      <div class="m4-cdate">vr 7 jun · Vandaag</div>
-                    </div>
-                    <div class="m4-send">Verstuur</div>
-                  </div>
-                  <div class="m4-card">
-                    <div>
-                      <div class="m4-cday">Dag 18 — Laatste herinnering</div>
-                      <div class="m4-cdate">di 18 jun · Gepland</div>
-                    </div>
-                    <div class="m4-send gray">Wacht</div>
+                <div class="m4-status">
+                  <span class="m4-sb-time">11:14</span>
+                  <div class="m4-sb-icons">
+                    <svg width="13" height="9" viewBox="0 0 13 9" fill="#1c1c1e"><rect x="0" y="5" width="2.5" height="4" rx=".5"/><rect x="3.5" y="3.5" width="2.5" height="5.5" rx=".5"/><rect x="7" y="1.5" width="2.5" height="7.5" rx=".5"/><rect x="10.5" y="0" width="2.5" height="9" rx=".5" opacity=".3"/></svg>
+                    <span>65%</span>
                   </div>
                 </div>
-                <div class="m4-dots">
-                  <div class="m4-di">WhatsApp</div>
-                  <div class="m4-di">E-mail</div>
+                <div class="m4-modal-bar">
+                  <span class="m4-modal-title">#2026-017: Jan Pietersen</span>
+                  <span class="m4-modal-close">✕</span>
+                </div>
+                <div class="m4-body">
+                  <div class="m4-back-row">
+                    <span class="m4-back">← Terug</span>
+                    <span class="m4-day">Dag 7</span>
+                  </div>
+                  <div class="m4-toggle-row">
+                    <span class="m4-tlabel">Informeel</span>
+                    <div class="m4-track"><div class="m4-thumb"></div></div>
+                    <span class="m4-tlabel on">Formeel</span>
+                  </div>
+                  <div class="m4-msg">
+                    <p>Geachte heer Pietersen,</p>
+                    <p>Ik wilde even checken of u de offerte goed ontvangen had. Zijn er nog vragen?</p>
+                    <p>Met vriendelijke groet, G. de Groot | 0612345678</p>
+                  </div>
+                  <div class="m4-regen">
+                    <span class="m4-regen-btn">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                      Genereer opnieuw
+                    </span>
+                    <span class="m4-variant">Variant 1/5</span>
+                  </div>
+                  <div class="m4-abtn m4-wa">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2.003a9.997 9.997 0 0 0-8.637 14.992L2 22l5.138-1.335A9.997 9.997 0 1 0 11.999 2.003z"/></svg>
+                    WhatsApp
+                  </div>
+                  <div class="m4-abtn m4-email">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    E-mail
+                  </div>
+                  <div class="m4-abtn m4-copy">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Kopieer
+                  </div>
+                </div>
+                <div class="m4-progress">
+                  <div class="m4-prog-item"><div class="m4-prog-dot on"></div><span class="m4-prog-lbl">Dag 3</span></div>
+                  <div class="m4-prog-item"><div class="m4-prog-dot"></div><span class="m4-prog-lbl">Dag 7</span></div>
+                  <div class="m4-prog-item"><div class="m4-prog-dot"></div><span class="m4-prog-lbl">Dag 18</span></div>
+                  <span class="m4-prog-sent">1/3 verstuurd</span>
+                </div>
+                <div class="m4-bottom">
+                  <span class="m4-question">Heeft de klant<br>de offerte<br>geaccepteerd?</span>
+                  <span class="m4-confirm-btn">Bevestig opdracht</span>
                 </div>
               </div>
             </div>
