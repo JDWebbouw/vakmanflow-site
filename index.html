@@ -1129,24 +1129,45 @@
     .m4-bottom{background:#fff;border-top:1px solid #e5e5ea;padding:7px 10px 9px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0}
     .m4-question{font-size:8px;color:#3c3c43;font-weight:500;flex:1;line-height:1.35}
     .m4-confirm-btn{background:#ac0a7a;color:#fff;font-size:8px;font-weight:700;border-radius:16px;padding:7px 10px;white-space:nowrap;flex-shrink:0}
-    /* Stap 5 */
-    .m5{background:#fff;padding:36px 12px 10px}
-    .m5-title{font-size:9.5px;font-weight:800;color:#1a1a1a;margin-bottom:8px}
-    .m5-steps{display:flex;flex-direction:column;gap:4px;margin-bottom:9px}
-    .m5-step{display:flex;align-items:center;justify-content:space-between;border:1.5px solid #e8e6e4;border-radius:8px;padding:6px 9px}
-    .m5-si{font-size:8px;color:#666;line-height:1.4}
-    .m5-sl{font-weight:700;color:#1a1a1a;font-size:8.5px}
-    .m5-done{font-size:7px;font-weight:700;background:#dcfce7;color:#166534;border-radius:8px;padding:2px 7px;white-space:nowrap}
-    .m5-send{font-size:7.5px;font-weight:700;background:#ac0a7a;color:#fff;border-radius:10px;padding:3px 9px;white-space:nowrap}
-    .m5-sec{font-size:9px;font-weight:700;color:#333;margin-bottom:5px}
-    .m5-toggle{display:flex;gap:4px;margin-bottom:6px}
-    .m5-tb{flex:1;text-align:center;padding:4px;border-radius:8px;font-size:8px;font-weight:600}
-    .m5-tb.on{background:#ac0a7a;color:#fff}
-    .m5-tb.off{background:#f0f0f0;color:#888}
-    .m5-msg{background:#f7f5f3;border-radius:8px;padding:7px;font-size:7.5px;color:#444;line-height:1.5;margin-bottom:7px}
-    .m5-btns{display:flex;gap:6px}
-    .m5-wa{flex:1;background:#16a34a;color:#fff;border-radius:20px;text-align:center;padding:7px;font-size:9px;font-weight:700}
-    .m5-cp{flex:1;background:#2d2d2d;color:#fff;border-radius:20px;text-align:center;padding:7px;font-size:9px;font-weight:700}
+    /* Stap 5 — Review berichtscherm (past in 220×460px scherm) */
+    .m5{background:#f2f2f7;padding:0}
+    .m5-status{height:30px;background:#fff;display:flex;align-items:flex-end;justify-content:space-between;padding:0 15px 5px;flex-shrink:0}
+    .m5-sb-time{font-size:9.5px;font-weight:700;color:#1c1c1e;letter-spacing:-.2px}
+    .m5-sb-icons{display:flex;align-items:center;gap:3px;font-size:8.5px;font-weight:600;color:#1c1c1e}
+    .m5-modal-bar{background:#fff;padding:6px 11px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e5ea;flex-shrink:0}
+    .m5-modal-title{font-size:9.5px;font-weight:700;color:#1c1c1e}
+    .m5-modal-close{font-size:11px;color:#8e8e93;line-height:1}
+    /* progress tracker */
+    .m5-prog-section{background:#fff;padding:8px 13px 6px;border-bottom:1px solid #f0f0f0;flex-shrink:0}
+    .m5-prog-track{position:relative;height:11px;margin-bottom:4px}
+    .m5-prog-rail{position:absolute;top:50%;left:0;right:0;height:2px;background:#e5e5ea;transform:translateY(-50%);border-radius:1px}
+    .m5-prog-fill{position:absolute;top:50%;left:0;width:calc(5/6*100%);height:2px;background:#ac0a7a;transform:translateY(-50%);border-radius:1px}
+    .m5-prog-dots{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;align-items:center}
+    .m5-pdot{width:6px;height:6px;border-radius:50%;background:#ac0a7a;flex-shrink:0}
+    .m5-pdot.active{width:11px;height:11px;background:#fff;border:2px solid #ac0a7a;box-shadow:0 0 0 2px rgba(172,10,122,.15)}
+    .m5-pdot.empty{background:#d1d1d6}
+    .m5-prog-label{text-align:right;font-size:7px;font-weight:700;color:#ac0a7a;letter-spacing:.05em;text-transform:uppercase}
+    /* card */
+    .m5-body{background:#fff;border-left:3px solid #ac0a7a;border-radius:9px;margin:6px 7px 4px;padding:9px 9px 7px;flex:1;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 3px rgba(0,0,0,.06);min-height:0}
+    .m5-back-row{display:flex;align-items:center;gap:7px;flex-shrink:0}
+    .m5-back{font-size:8.5px;color:#8e8e93}
+    .m5-day{font-size:12px;font-weight:700;color:#1c1c1e}
+    .m5-toggle-row{display:flex;align-items:center;gap:5px;flex-shrink:0}
+    .m5-tlabel{font-size:7.5px;color:#555;font-weight:600}
+    .m5-tlabel.inactive{color:#aaa;font-weight:500}
+    .m5-track-off{width:26px;height:15px;background:#e5e5ea;border-radius:8px;position:relative;flex-shrink:0}
+    .m5-thumb-l{width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:1.5px;left:1.5px;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+    .m5-msg{background:#f9f9f9;border:1px solid #e8e8e8;border-radius:7px;padding:7px 8px;font-size:8px;color:#1c1c1e;line-height:1.5;flex:1;overflow:hidden}
+    .m5-regen{display:flex;align-items:center;gap:5px;flex-shrink:0}
+    .m5-regen-btn{display:flex;align-items:center;gap:3px;font-size:8px;font-weight:600;color:#ac0a7a;background:transparent;border:1.5px solid #ac0a7a;border-radius:14px;padding:3px 7px}
+    .m5-variant{font-size:8px;color:#8e8e93}
+    .m5-abtn{display:flex;align-items:center;justify-content:center;gap:4px;border-radius:8px;padding:6px 8px;font-size:9.5px;font-weight:600;color:#fff;flex-shrink:0}
+    .m5-wa{background:#25d366}
+    .m5-copy-btn{background:#4b5563}
+    /* mintgroene bottom card */
+    .m5-bottom-card{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;margin:0 7px 7px;padding:8px 9px;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+    .m5-bottom-q{font-size:8px;color:#166534;font-weight:500}
+    .m5-review-btn{display:inline-flex;align-items:center;gap:4px;background:#16a34a;color:#fff;font-size:8px;font-weight:700;border-radius:14px;padding:6px 10px;align-self:flex-start}
 
     /* ─── REVEAL CLASSES (set by GSAP) ─── */
     .reveal{opacity:0;transform:translateY(32px)}
@@ -1838,26 +1859,66 @@
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
                   <div class="m-base m5">
-                    <div class="m5-title">Review aanvragen</div>
-                    <div class="m5-steps">
-                      <div class="m5-step">
-                        <div class="m5-si"><div class="m5-sl">Fam. Janssen</div>Buitenschilderwerk · Klaar</div>
-                        <div class="m5-send">Stuur verzoek</div>
-                      </div>
-                      <div class="m5-step">
-                        <div class="m5-si"><div class="m5-sl">M. Verstegen</div>Binnenschilderwerk · Klaar</div>
-                        <div class="m5-done">✓ Verstuurd</div>
+                    <div class="m5-status">
+                      <span class="m5-sb-time">11:14</span>
+                      <div class="m5-sb-icons">
+                        <svg width="13" height="9" viewBox="0 0 17 12" fill="#1c1c1e"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="2.5" width="3" height="9.5" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity=".3"/></svg>
+                        <span style="font-size:8px;font-weight:600;color:#1c1c1e">65%</span>
                       </div>
                     </div>
-                    <div class="m5-sec">Bericht (WhatsApp of e-mail)</div>
-                    <div class="m5-toggle">
-                      <div class="m5-tb on">WhatsApp</div>
-                      <div class="m5-tb off">E-mail</div>
+                    <div class="m5-modal-bar">
+                      <span class="m5-modal-title">#2026-019: Fam. Janssen</span>
+                      <span class="m5-modal-close">✕</span>
                     </div>
-                    <div class="m5-msg">"Hoi Fam. Janssen, bedankt voor het vertrouwen! Zou je een Google-review willen schrijven? Dat helpt ons enorm 🙏"</div>
-                    <div class="m5-btns">
-                      <div class="m5-wa">📱 Verstuur</div>
-                      <div class="m5-cp">Kopieer</div>
+                    <div class="m5-prog-section">
+                      <div class="m5-prog-track">
+                        <div class="m5-prog-rail"></div>
+                        <div class="m5-prog-fill"></div>
+                        <div class="m5-prog-dots">
+                          <div class="m5-pdot"></div>
+                          <div class="m5-pdot"></div>
+                          <div class="m5-pdot"></div>
+                          <div class="m5-pdot"></div>
+                          <div class="m5-pdot"></div>
+                          <div class="m5-pdot active"></div>
+                          <div class="m5-pdot empty"></div>
+                        </div>
+                      </div>
+                      <div class="m5-prog-label">Review vragen</div>
+                    </div>
+                    <div class="m5-body">
+                      <div class="m5-back-row">
+                        <span class="m5-back">← Terug</span>
+                        <span class="m5-day">Dag 3–5</span>
+                      </div>
+                      <div class="m5-toggle-row">
+                        <span class="m5-tlabel">Informeel</span>
+                        <div class="m5-track-off"><div class="m5-thumb-l"></div></div>
+                        <span class="m5-tlabel inactive">Formeel</span>
+                      </div>
+                      <div class="m5-msg">Hoi Janssen, ik hoop dat je tevreden bent met het schilderwerk! Zou je een korte Google Review willen achterlaten? Het helpt mij enorm. Klik hier: bit.ly/vkmn24 Alvast bedankt!</div>
+                      <div class="m5-regen">
+                        <span class="m5-regen-btn">
+                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                          Genereer opnieuw
+                        </span>
+                        <span class="m5-variant">Variant 1/5</span>
+                      </div>
+                      <div class="m5-abtn m5-wa">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2.003a9.997 9.997 0 0 0-8.637 14.992L2 22l5.138-1.335A9.997 9.997 0 1 0 11.999 2.003z"/></svg>
+                        WhatsApp
+                      </div>
+                      <div class="m5-abtn m5-copy-btn">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        Kopieer
+                      </div>
+                    </div>
+                    <div class="m5-bottom-card">
+                      <span class="m5-bottom-q">Heb je al een review ontvangen?</span>
+                      <span class="m5-review-btn">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Review ontvangen
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -2123,26 +2184,66 @@
             <div class="phone-notch"></div>
             <div class="phone-screen">
               <div class="m-base m5">
-                <div class="m5-title">Review aanvragen</div>
-                <div class="m5-steps">
-                  <div class="m5-step">
-                    <div class="m5-si"><div class="m5-sl">Fam. Janssen</div>Buitenschilderwerk · Klaar</div>
-                    <div class="m5-send">Stuur verzoek</div>
-                  </div>
-                  <div class="m5-step">
-                    <div class="m5-si"><div class="m5-sl">M. Verstegen</div>Binnenschilderwerk · Klaar</div>
-                    <div class="m5-done">✓ Verstuurd</div>
+                <div class="m5-status">
+                  <span class="m5-sb-time">11:14</span>
+                  <div class="m5-sb-icons">
+                    <svg width="13" height="9" viewBox="0 0 17 12" fill="#1c1c1e"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="2.5" width="3" height="9.5" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1" opacity=".3"/></svg>
+                    <span style="font-size:8px;font-weight:600;color:#1c1c1e">65%</span>
                   </div>
                 </div>
-                <div class="m5-sec">Bericht (WhatsApp of e-mail)</div>
-                <div class="m5-toggle">
-                  <div class="m5-tb on">WhatsApp</div>
-                  <div class="m5-tb off">E-mail</div>
+                <div class="m5-modal-bar">
+                  <span class="m5-modal-title">#2026-019: Fam. Janssen</span>
+                  <span class="m5-modal-close">✕</span>
                 </div>
-                <div class="m5-msg">"Hoi Fam. Janssen, bedankt voor het vertrouwen! Zou je een Google-review willen schrijven? Dat helpt ons enorm 🙏"</div>
-                <div class="m5-btns">
-                  <div class="m5-wa">📱 Verstuur</div>
-                  <div class="m5-cp">Kopieer</div>
+                <div class="m5-prog-section">
+                  <div class="m5-prog-track">
+                    <div class="m5-prog-rail"></div>
+                    <div class="m5-prog-fill"></div>
+                    <div class="m5-prog-dots">
+                      <div class="m5-pdot"></div>
+                      <div class="m5-pdot"></div>
+                      <div class="m5-pdot"></div>
+                      <div class="m5-pdot"></div>
+                      <div class="m5-pdot"></div>
+                      <div class="m5-pdot active"></div>
+                      <div class="m5-pdot empty"></div>
+                    </div>
+                  </div>
+                  <div class="m5-prog-label">Review vragen</div>
+                </div>
+                <div class="m5-body">
+                  <div class="m5-back-row">
+                    <span class="m5-back">← Terug</span>
+                    <span class="m5-day">Dag 3–5</span>
+                  </div>
+                  <div class="m5-toggle-row">
+                    <span class="m5-tlabel">Informeel</span>
+                    <div class="m5-track-off"><div class="m5-thumb-l"></div></div>
+                    <span class="m5-tlabel inactive">Formeel</span>
+                  </div>
+                  <div class="m5-msg">Hoi Janssen, ik hoop dat je tevreden bent met het schilderwerk! Zou je een korte Google Review willen achterlaten? Het helpt mij enorm. Klik hier: bit.ly/vkmn24 Alvast bedankt!</div>
+                  <div class="m5-regen">
+                    <span class="m5-regen-btn">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                      Genereer opnieuw
+                    </span>
+                    <span class="m5-variant">Variant 1/5</span>
+                  </div>
+                  <div class="m5-abtn m5-wa">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2.003a9.997 9.997 0 0 0-8.637 14.992L2 22l5.138-1.335A9.997 9.997 0 1 0 11.999 2.003z"/></svg>
+                    WhatsApp
+                  </div>
+                  <div class="m5-abtn m5-copy-btn">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Kopieer
+                  </div>
+                </div>
+                <div class="m5-bottom-card">
+                  <span class="m5-bottom-q">Heb je al een review ontvangen?</span>
+                  <span class="m5-review-btn">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Review ontvangen
+                  </span>
                 </div>
               </div>
             </div>
