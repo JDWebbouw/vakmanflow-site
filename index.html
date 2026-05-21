@@ -438,7 +438,7 @@
     .prob-num{
       font-family:'Plus Jakarta Sans',sans-serif;
       font-size:42px;font-weight:800;
-      color:rgba(42,157,156,.15);
+      color:rgba(42,157,156,.5);
       line-height:1;margin-bottom:20px;
       letter-spacing:-.04em;
     }
@@ -1151,7 +1151,7 @@
 
     /* ─── STICKY SCROLL STAPPEN ─── */
     .system-scroll-zone{
-      height:560vh;
+      height:calc(100vh + 200px);
       position:relative;
     }
     .system-sticky{
@@ -1243,8 +1243,9 @@
     }
     .step-item p{font-size:.95rem;color:var(--muted);line-height:1.82}
 
-    /* telefoon slides — CSS grid stack */
-    .sticky-phones-col{display:grid;place-items:center}
+    /* telefoon slides — flex wrapper met pijlknoppen links/rechts */
+    .sticky-phones-col{display:flex;align-items:center;gap:24px;justify-content:center}
+    .phone-slides-wrap{display:grid;place-items:center}
     .phone-slide{
       grid-area:1/1;
       opacity:0;
@@ -1272,6 +1273,34 @@
     .step-dot.active{
       background:var(--acc);
       transform:scale(1.5);
+    }
+
+    /* pijlknoppen */
+    .step-arrow{
+      width:48px;height:48px;
+      border-radius:50%;
+      border:1.5px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.07);
+      color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      transition:background .2s,border-color .2s,transform .2s;
+      flex-shrink:0;
+      animation:arrowBreathe 2.5s ease-in-out infinite;
+    }
+    .step-arrow:hover{
+      background:rgba(42,157,156,.25);
+      border-color:var(--acc);
+      animation:none;
+      transform:scale(1.08);
+    }
+    .step-arrow[disabled]{
+      opacity:0;
+      pointer-events:none;
+    }
+    @keyframes arrowBreathe{
+      0%,100%{transform:scale(1);opacity:.7}
+      50%{transform:scale(1.1);opacity:1}
     }
 
     /* ─── CONTACT NIEUW ─── */
@@ -1569,6 +1598,10 @@
 
           <!-- TELEFOON SLIDES -->
           <div class="sticky-phones-col">
+            <button class="step-arrow step-arrow-prev" id="step-prev" aria-label="Vorige stap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="phone-slides-wrap">
             <div class="phone-slide active">
               <div class="phone">
                 <div class="phone-notch"></div>
@@ -1774,6 +1807,10 @@
                 </div>
               </div>
             </div>
+            </div><!-- /phone-slides-wrap -->
+            <button class="step-arrow step-arrow-next" id="step-next" aria-label="Volgende stap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div><!-- /sticky-phones-col -->
 
         </div><!-- /sticky-inner -->
@@ -2099,7 +2136,7 @@
         </div>
         <div class="price-setup-pill">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <strong>€250 eenmalig setup</strong> — daarna alleen het maandtarief
+          <strong>€250 eenmalige setup</strong> — daarna alleen het maandtarief
         </div>
         <ul class="price-list">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Intake formulier op jouw website</li>
@@ -2142,9 +2179,10 @@
       <div class="about-text reveal-right">
         <span class="sec-label">Over VakmanFlow</span>
         <h2>Niet de schilder, wél de man achter het systeem</h2>
-        <p>Ik ben Jisse, 20 jaar en geen schilder. Maar ik zie hoe hard vakmannen werken — en hoe veel tijd er verloren gaat aan dingen die geautomatiseerd kunnen worden.</p>
-        <p>VakmanFlow is mijn antwoord daarop. Een systeem dat al het "kantoorwerk" overneemt, zodat jij je kunt focussen op waartoe je echt bent opgeleid: het werk met je handen.</p>
-        <p>Ik werk alleen met schilders in de regio Apeldoorn, zodat ik iedereen persoonlijk kan helpen. Geen callcenter, geen grote corporate. Gewoon ik, jij, en een systeem dat werkt.</p>
+        <p>Ik ben Jisse, 20 jaar en geen schilder. Maar ik zie hoe hard vakmannen werken, en hoeveel tijd er verloren gaat aan dingen die gewoon geregeld kunnen worden.</p>
+        <p>De meeste schilders weten niet dat reviews het verschil maken tussen gevonden worden of niet. Dat je offertes en follow-ups volledig kunt automatiseren. Dat jouw concurrenten dit al doen.</p>
+        <p>Jij hebt geen tijd om dat uit te zoeken, je bent bezig met je brood verdienen. Dus doe ik het voor je. Geen gedoe, geen handleiding, gewoon een systeem dat werkt.</p>
+        <p>Ik werk alleen met schilders in de regio Apeldoorn, zodat ik iedereen persoonlijk kan helpen. <strong>Ik zet het op. Het systeem draait. Jij schildert.</strong></p>
         <a href="#contact" class="btn btn-outline">
           Leer mij kennen
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2606,7 +2644,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* ─── STICKY SCROLL STAPPEN ─── */
 (function(){
-  const scrollZone = document.getElementById('system-scroll-zone');
   const stepItems  = document.querySelectorAll('.step-item');
   const phoneSlides= document.querySelectorAll('#system-scroll-zone .phone-slide');
   const stepDots   = document.querySelectorAll('.step-dot');
@@ -2659,33 +2696,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     stepDots.forEach((d,i)=>d.classList.toggle('active', i===toIdx));
   }
 
-  function onScroll(){
-    if(!scrollZone) return;
-    const rect    = scrollZone.getBoundingClientRect();
-    const zoneH   = scrollZone.offsetHeight;
-    const viewH   = window.innerHeight;
-    const scrolled= Math.max(0, -rect.top);
-    const maxScroll = Math.max(1, zoneH - viewH);
-    const progress  = Math.min(1, scrolled / maxScroll);
-    const step = Math.min(total - 1, Math.floor(progress * total));
-    transition(step);
+  /* ── pijl + dot navigatie ── */
+  const prevBtn = document.getElementById('step-prev');
+  const nextBtn = document.getElementById('step-next');
+
+  function goToStep(idx){
+    const newIdx = Math.max(0, Math.min(total - 1, idx));
+    transition(newIdx);
+    if(prevBtn) prevBtn.disabled = newIdx === 0;
+    if(nextBtn) nextBtn.disabled = newIdx === total - 1;
   }
 
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  prevBtn?.addEventListener('click', () => goToStep(currentStep - 1));
+  nextBtn?.addEventListener('click', () => goToStep(currentStep + 1));
+  stepDots.forEach((dot, i) => dot.addEventListener('click', () => goToStep(i)));
 
-  /* dots klikbaar — scroll naar juiste stap */
-  document.querySelectorAll('.step-dot').forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      if (!scrollZone) return;
-      const zoneH   = scrollZone.offsetHeight;
-      const viewH   = window.innerHeight;
-      const maxScroll = zoneH - viewH;
-      const frac = total > 1 ? idx / (total - 1) : 0;
-      const targetScroll = scrollZone.offsetTop + maxScroll * frac;
-      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-    });
-  });
+  /* initieel */
+  if(prevBtn) prevBtn.disabled = true;
+  if(nextBtn) nextBtn.disabled = total <= 1;
 })();
 
 /* ─── MOBIELE STAPPEN DOTS ─── */
