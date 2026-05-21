@@ -1161,6 +1161,13 @@
       opacity:.025;pointer-events:none;z-index:1;
     }
 
+    /* ─── CALENDLY iOS PATCH ─── */
+    /* Voorkomt dat de overlay touch-events in het iframe blokkeert op iOS/iPad */
+    .calendly-overlay{-webkit-overflow-scrolling:touch!important}
+    .calendly-popup-content{-webkit-overflow-scrolling:touch!important;overflow-y:auto!important}
+    .calendly-popup{-webkit-overflow-scrolling:touch!important}
+    .calendly-popup iframe{touch-action:auto!important;pointer-events:auto!important}
+
     /* ─── SCROLLBAR ─── */
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:var(--bg2)}
@@ -2464,16 +2471,70 @@
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script>
-  window.addEventListener('message', function(e) {
-    if (!e.data || typeof e.data !== 'object') return;
-    // Calendly sluit: herstel viewport zodat iOS niet ingezoomd blijft
-    if (e.data.event && e.data.event.startsWith('calendly.')) {
-      setTimeout(function() {
+(function() {
+  var _scrollY = 0;
+
+  /*
+   * iOS/iPad fix voor Calendly popup:
+   *
+   * Probleem: Calendly zet overflow:hidden op de body bij openen.
+   * Op iOS/iPad blokkeert dit touch-events in iframes — knoppen,
+   * dropdowns en vragen reageren dan niet meer.
+   *
+   * Oplossing: vervang overflow:hidden door position:fixed + top:-scrollY
+   * (de iOS-standaard scroll-lock die iframes ongemoeid laat).
+   * Herstel alles + viewport pas bij het sluiten van de popup.
+   */
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+
+      /* ── Popup geopend: .calendly-overlay toegevoegd aan body ── */
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType !== 1) return;
+        if (!node.classList || !node.classList.contains('calendly-overlay')) return;
+
+        _scrollY = window.scrollY || window.pageYOffset;
+
+        /* iOS-compatibele scroll-lock (niet overflow:hidden!) */
+        document.body.style.top      = '-' + _scrollY + 'px';
+        document.body.style.position = 'fixed';
+        document.body.style.width    = '100%';
+
+        /* -webkit-overflow-scrolling op popup-content en iframe */
+        setTimeout(function() {
+          var content = node.querySelector('.calendly-popup-content');
+          if (content) {
+            content.style.webkitOverflowScrolling = 'touch';
+            content.style.overflowY = 'auto';
+          }
+          var iframe = node.querySelector('iframe');
+          if (iframe) {
+            iframe.setAttribute('scrolling', 'yes');
+            iframe.style.webkitOverflowScrolling = 'touch';
+          }
+        }, 150);
+      });
+
+      /* ── Popup gesloten: .calendly-overlay verwijderd uit body ── */
+      mutation.removedNodes.forEach(function(node) {
+        if (node.nodeType !== 1) return;
+        if (!node.classList || !node.classList.contains('calendly-overlay')) return;
+
+        /* Herstel scroll-positie */
+        document.body.style.position = '';
+        document.body.style.top      = '';
+        document.body.style.width    = '';
+        window.scrollTo(0, _scrollY);
+
+        /* Herstel viewport (voorkomt ingezoomd-blijven op iOS) */
         var vp = document.querySelector('meta[name="viewport"]');
-        if (vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-      }, 300);
-    }
+        if (vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0');
+      });
+    });
   });
+
+  observer.observe(document.body, { childList: true });
+})();
 </script>
 
 <!-- ══════════════════════════════════
