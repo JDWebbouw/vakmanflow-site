@@ -795,7 +795,10 @@
       position:relative;overflow:hidden;
       box-shadow:0 0 80px rgba(42,157,156,.1),inset 0 1px 0 rgba(42,157,156,.15);
     }
-    @media(max-width:640px){.price-card{padding:40px 28px}}
+    @media(max-width:640px){
+      .price-card{padding:40px 28px}
+      .price-setup-pill{padding:8px 14px;font-size:0.8rem}
+    }
     .price-card::before{
       content:'';position:absolute;top:-80px;right:-80px;
       width:300px;height:300px;
@@ -1174,6 +1177,7 @@
       .system-scroll-zone{display:none}
       .sticky-inner{grid-template-columns:1fr;gap:32px}
       .sticky-phones-col{display:none}
+      .sticky-dots{display:none}
     }
 
     /* ─── MOBIELE STAPPEN ─── */
@@ -1440,7 +1444,7 @@
   </div>
   <a href="#contact" class="nav-cta">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    Gratis demo
+    Plan een gesprek in
   </a>
 </nav>
 
@@ -1466,7 +1470,7 @@
       </p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary btn-lg">
-          Plan een gratis demo
+          Plan een gratis gesprek in
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#hoe-het-werkt" class="btn btn-outline btn-lg">Hoe werkt het?</a>
@@ -2153,7 +2157,7 @@
           Geen risico — je betaalt de setupfee pas na de eerste maand.
         </div>
         <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:18px 38px">
-          Gratis demo · 30 minuten
+          Plan een gesprek in · 15 minuten
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <p class="price-fine">Geen jaarcontract. Geen verborgen kosten. Stoppen kan altijd.</p>
@@ -2324,10 +2328,10 @@
   <div class="cta-inner reveal">
     <span class="sec-label">Klaar om te starten?</span>
     <h2>Jij schildert.<br>Ik regel de rest.</h2>
-    <p>Plan een gratis kennismakingsgesprek van 30 minuten. Geen verplichtingen, geen verkooppraatje — gewoon kijken wat VakmanFlow voor jou kan betekenen.</p>
+    <p>Plan een gratis kennismakingsgesprek van 15 minuten. Geen verplichtingen, geen verkooppraatje — gewoon kijken wat VakmanFlow voor jou kan betekenen.</p>
     <div class="cta-btns">
       <a href="#contact" class="btn btn-primary btn-lg">
-        Gratis demo aanvragen
+        Plan een gesprek in
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -2340,10 +2344,9 @@
 ══════════════════════════════════ -->
 <section class="contact" id="contact">
   <div class="contact-header reveal">
-    <span class="sec-label">Demo aanvragen</span>
-    <h2 class="sec-h2">Plan een gratis demo</h2>
-    <p class="sec-sub center">Kies hieronder een belmoment. Bevalt het gesprek? Dan kom ik bij je langs voor een live demo — volledig gratis, geen verplichtingen.
-</p>
+    <span class="sec-label">Kennismaken</span>
+    <h2 class="sec-h2">Plan een gratis gesprek</h2>
+    <p class="sec-sub center">Kies hieronder een belmoment. Geen verkooppraatje — gewoon even kennismaken en kijken of het iets voor jou is.</p>
   </div>
 
   <div class="contact-grid reveal">
@@ -2390,6 +2393,18 @@
 <!-- Calendly popup -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script>
+  window.addEventListener('message', function(e) {
+    if (!e.data || typeof e.data !== 'object') return;
+    // Calendly sluit: herstel viewport zodat iOS niet ingezoomd blijft
+    if (e.data.event && e.data.event.startsWith('calendly.')) {
+      setTimeout(function() {
+        var vp = document.querySelector('meta[name="viewport"]');
+        if (vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+      }, 300);
+    }
+  });
+</script>
 
 <!-- ══════════════════════════════════
      FOOTER
